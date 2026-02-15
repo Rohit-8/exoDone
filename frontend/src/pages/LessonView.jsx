@@ -118,12 +118,14 @@ export default function LessonView() {
     <div className="max-w-5xl mx-auto">
       {/* Header */}
       <div className="mb-8">
-        <div className="text-sm text-gray-400 mb-2">
-          <Link to="/categories" className="hover:text-white">Categories</Link>
-          <span className="mx-2">/</span>
-          <Link to={`/topic/${lesson.topic_slug}`} className="hover:text-white">{lesson.topic_name}</Link>
-          <span className="mx-2">/</span>
-          <span>{lesson.title}</span>
+        <div className="text-sm text-gray-400 mb-2 flex items-center flex-wrap gap-1">
+          <Link to="/categories" className="hover:text-cyan-400 transition-colors">Categories</Link>
+          <span className="mx-1 text-slate-600">/</span>
+          <Link to={`/topic/${lesson.category_slug}`} className="hover:text-cyan-400 transition-colors">{lesson.category_name}</Link>
+          <span className="mx-1 text-slate-600">/</span>
+          <span className="text-slate-300">{lesson.topic_name}</span>
+          <span className="mx-1 text-slate-600">/</span>
+          <span className="text-white">{lesson.title}</span>
         </div>
         
         <h1 className="text-4xl font-bold text-white mb-4">{lesson.title}</h1>
@@ -155,8 +157,8 @@ export default function LessonView() {
       </div>
 
       {/* Tabs */}
-      <div className="bg-slate-800 rounded-xl border border-slate-700 overflow-hidden">
-        <div className="flex border-b border-slate-700">
+      <div className="bg-slate-800/50 rounded-2xl border border-slate-700/50 overflow-hidden">
+        <div className="flex border-b border-slate-700/50">
           <button
             onClick={() => setActiveTab('content')}
             className={`flex-1 px-6 py-4 font-semibold transition ${
@@ -365,7 +367,7 @@ export default function LessonView() {
         <div className="mt-6 flex justify-end">
           <button
             onClick={markAsComplete}
-            className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold flex items-center space-x-2 transition"
+            className="bg-emerald-600 hover:bg-emerald-500 text-white px-6 py-3 rounded-xl font-semibold flex items-center space-x-2 transition-all hover:shadow-lg hover:shadow-emerald-500/20"
           >
             <CheckCircle className="w-5 h-5" />
             <span>Mark as Complete</span>
@@ -378,7 +380,7 @@ export default function LessonView() {
         {navigation.previous ? (
           <Link
             to={`/lesson/${navigation.previous.slug}`}
-            className="flex items-center space-x-2 px-6 py-3 bg-slate-800 hover:bg-slate-700 text-white rounded-lg transition"
+            className="flex items-center space-x-2 px-6 py-3 bg-slate-800/50 hover:bg-slate-800 text-white rounded-xl transition border border-slate-700/50 hover:border-slate-600"
           >
             <ChevronLeft className="w-5 h-5" />
             <span>Previous: {navigation.previous.title}</span>
@@ -390,7 +392,7 @@ export default function LessonView() {
         {navigation.next && (
           <Link
             to={`/lesson/${navigation.next.slug}`}
-            className="flex items-center space-x-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition"
+            className="flex items-center space-x-2 px-6 py-3 bg-cyan-600 hover:bg-cyan-500 text-white rounded-xl transition-all hover:shadow-lg hover:shadow-cyan-500/20"
           >
             <span>Next: {navigation.next.title}</span>
             <ChevronRight className="w-5 h-5" />

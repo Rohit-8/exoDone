@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, BookOpen, Code, Layers, CheckCircle } from 'lucide-react';
+import { ArrowRight, BookOpen, Code, Layers, CheckCircle, Sparkles, Zap } from 'lucide-react';
 
 export default function Home() {
   const features = [
@@ -7,19 +7,25 @@ export default function Home() {
       icon: <Layers className="w-8 h-8" />,
       title: 'Software Architecture',
       description: 'Master system design from URL shorteners to distributed systems',
-      color: 'blue'
+      color: 'blue',
+      iconBg: 'bg-blue-500/15',
+      iconColor: 'text-blue-400',
     },
     {
       icon: <Code className="w-8 h-8" />,
       title: 'Backend Development',
       description: 'Learn OOP, design patterns, and advanced backend concepts in C#, Java, Python, or Node.js',
-      color: 'green'
+      color: 'green',
+      iconBg: 'bg-emerald-500/15',
+      iconColor: 'text-emerald-400',
     },
     {
       icon: <BookOpen className="w-8 h-8" />,
       title: 'React & Frontend',
       description: 'Build modern UIs with React, hooks, state management, and advanced patterns',
-      color: 'purple'
+      color: 'purple',
+      iconBg: 'bg-purple-500/15',
+      iconColor: 'text-purple-400',
     }
   ];
 
@@ -33,28 +39,36 @@ export default function Home() {
   return (
     <div className="space-y-16">
       {/* Hero Section */}
-      <section className="text-center py-16">
-        <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
-          Master Your <span className="text-blue-500">Interview Skills</span>
-        </h1>
-        <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-          Comprehensive learning paths for Software Architecture, Backend Development, and Frontend with React. 
-          Progress from Junior to Lead level with hands-on lessons, code examples, and quizzes.
-        </p>
-        <div className="flex justify-center space-x-4">
-          <Link
-            to="/categories"
-            className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold flex items-center space-x-2 transition"
-          >
-            <span>Start Learning</span>
-            <ArrowRight className="w-5 h-5" />
-          </Link>
-          <Link
-            to="/register"
-            className="bg-slate-700 hover:bg-slate-600 text-white px-8 py-3 rounded-lg font-semibold transition"
-          >
-            Sign Up Free
-          </Link>
+      <section className="text-center py-20 relative">
+        <div className="absolute inset-0 grid-bg opacity-50" />
+        <div className="relative">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-cyan-500/10 border border-cyan-500/20 rounded-full text-cyan-400 text-sm font-medium mb-8 animate-fade-in-up">
+            <Sparkles className="w-4 h-4" />
+            Interview Preparation Platform
+          </div>
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight animate-fade-in-up" style={{ animationDelay: '80ms' }}>
+            Master Your{' '}
+            <span className="gradient-text">Interview Skills</span>
+          </h1>
+          <p className="text-xl text-slate-400 mb-10 max-w-3xl mx-auto leading-relaxed animate-fade-in-up" style={{ animationDelay: '160ms' }}>
+            Comprehensive learning paths for Software Architecture, Backend Development, and Frontend with React.
+            Progress from Junior to Lead level with hands-on lessons, code examples, and quizzes.
+          </p>
+          <div className="flex justify-center gap-4 animate-fade-in-up" style={{ animationDelay: '240ms' }}>
+            <Link
+              to="/categories"
+              className="bg-cyan-600 hover:bg-cyan-500 text-white px-8 py-3.5 rounded-xl font-semibold flex items-center gap-2 transition-all hover:shadow-lg hover:shadow-cyan-500/25 hover:-translate-y-0.5"
+            >
+              <span>Start Learning</span>
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+            <Link
+              to="/register"
+              className="bg-slate-800 hover:bg-slate-700 text-white px-8 py-3.5 rounded-xl font-semibold transition-all border border-slate-700 hover:border-slate-600"
+            >
+              Sign Up Free
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -63,17 +77,20 @@ export default function Home() {
         <h2 className="text-3xl font-bold text-white text-center mb-12">
           What You'll Learn
         </h2>
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-6">
           {features.map((feature, index) => (
             <div
               key={index}
-              className="bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-blue-500 transition"
+              className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50 hover:border-slate-600 transition-all duration-300 animate-fade-in-up"
+              style={{ animationDelay: `${300 + index * 100}ms` }}
             >
-              <div className={`text-${feature.color}-500 mb-4`}>
-                {feature.icon}
+              <div className={`${feature.iconBg} w-12 h-12 rounded-xl flex items-center justify-center mb-4`}>
+                <div className={feature.iconColor}>
+                  {feature.icon}
+                </div>
               </div>
               <h3 className="text-xl font-bold text-white mb-2">{feature.title}</h3>
-              <p className="text-gray-400">{feature.description}</p>
+              <p className="text-slate-400 text-sm leading-relaxed">{feature.description}</p>
             </div>
           ))}
         </div>
@@ -125,20 +142,27 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl p-12 text-center">
-        <h2 className="text-3xl font-bold text-white mb-4">
-          Ready to Start Your Journey?
-        </h2>
-        <p className="text-xl text-blue-100 mb-8">
-          Join thousands of developers preparing for their next interview
-        </p>
-        <Link
-          to="/register"
-          className="bg-white hover:bg-gray-100 text-blue-600 px-8 py-3 rounded-lg font-semibold inline-flex items-center space-x-2 transition"
-        >
-          <span>Get Started Free</span>
-          <ArrowRight className="w-5 h-5" />
-        </Link>
+      <section className="relative bg-slate-800/50 rounded-2xl p-12 text-center border border-slate-700/50 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-blue-500/5 to-purple-500/10" />
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent" />
+        <div className="relative">
+          <div className="w-12 h-12 rounded-xl bg-cyan-500/15 flex items-center justify-center mx-auto mb-6">
+            <Zap className="w-6 h-6 text-cyan-400" />
+          </div>
+          <h2 className="text-3xl font-bold text-white mb-4">
+            Ready to Start Your Journey?
+          </h2>
+          <p className="text-lg text-slate-400 mb-8 max-w-xl mx-auto">
+            Join thousands of developers preparing for their next interview
+          </p>
+          <Link
+            to="/register"
+            className="bg-cyan-600 hover:bg-cyan-500 text-white px-8 py-3.5 rounded-xl font-semibold inline-flex items-center gap-2 transition-all hover:shadow-lg hover:shadow-cyan-500/25 hover:-translate-y-0.5"
+          >
+            <span>Get Started Free</span>
+            <ArrowRight className="w-5 h-5" />
+          </Link>
+        </div>
       </section>
     </div>
   );

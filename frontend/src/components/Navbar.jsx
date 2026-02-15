@@ -12,13 +12,14 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-slate-800 border-b border-slate-700 sticky top-0 z-50">
+    <nav className="bg-slate-900/80 backdrop-blur-2xl border-b border-slate-700/50 sticky top-0 z-50">
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent" />
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 text-white font-bold text-xl">
-            <BookOpen className="w-8 h-8 text-blue-500" />
-            <span>Interview<span className="text-blue-500">Prep</span></span>
+          <Link to="/" className="flex items-center space-x-2 text-white font-bold text-xl group">
+            <BookOpen className="w-8 h-8 text-cyan-500 group-hover:text-cyan-400 transition-colors" />
+            <span>Interview<span className="text-cyan-500">Prep</span></span>
           </Link>
 
           {/* Navigation Links */}
@@ -80,7 +81,7 @@ export default function Navbar() {
                 </Link>
                 <Link
                   to="/register"
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition"
+                  className="bg-cyan-600 hover:bg-cyan-500 text-white px-4 py-2 rounded-xl font-medium transition-all hover:shadow-lg hover:shadow-cyan-500/20"
                 >
                   Sign Up
                 </Link>
