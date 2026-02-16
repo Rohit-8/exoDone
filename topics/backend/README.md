@@ -41,6 +41,26 @@
 - [ ] Request/Response handling
 - [ ] Simple CRUD operations
 
+### 1.5 Git & Version Control
+- [ ] Git basics (init, add, commit, push, pull)
+- [ ] Branching and merging
+- [ ] Resolving merge conflicts
+- [ ] Git rebase vs merge
+- [ ] Cherry-pick and stash
+- [ ] Branching strategies (GitFlow, trunk-based)
+- [ ] Writing good commit messages
+- [ ] Pull request / code review workflow
+
+### 1.6 Linux & Shell Basics
+- [ ] File system navigation (cd, ls, pwd, find)
+- [ ] File operations (cp, mv, rm, chmod, chown)
+- [ ] Process management (ps, top, kill, htop)
+- [ ] Piping and redirection (|, >, >>)
+- [ ] Basic shell scripting (bash)
+- [ ] SSH and remote server basics
+- [ ] Environment variables
+- [ ] Package managers (apt, yum, brew)
+
 ---
 
 ## 🟡 Level 2: Intermediate (Mid-Level Developer)
@@ -188,6 +208,14 @@
 - [ ] Memory management
 - [ ] Lazy loading vs Eager loading
 
+### 3.9 API Beyond REST
+- [ ] GraphQL (schema, resolvers, subscriptions)
+- [ ] gRPC & Protocol Buffers
+- [ ] WebSocket server implementation
+- [ ] Server-Sent Events (SSE)
+- [ ] API gateway patterns
+- [ ] API rate limiting & throttling implementation
+
 ---
 
 ## 🔴 Level 4: Expert (Lead Developer)
@@ -262,6 +290,13 @@
 - [ ] Capacity planning
 - [ ] Cost optimization
 - [ ] Vendor evaluation
+
+### 4.9 Debugging & Incident Response
+- [ ] Production debugging strategies
+- [ ] Log analysis and structured logging
+- [ ] Root Cause Analysis (RCA) / Postmortems
+- [ ] On-call processes and runbooks
+- [ ] Feature flags for safe rollouts
 
 ---
 

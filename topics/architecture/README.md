@@ -173,7 +173,25 @@
 - [ ] Database performance at scale
 - [ ] Network optimization
 
-### 4.5 Case Studies - Expert
+### 4.5 Practical Cloud Services
+- [ ] AWS/Azure/GCP core services (compute, storage, networking)
+- [ ] Serverless functions (Lambda, Azure Functions)
+- [ ] Object storage (S3, Blob Storage)
+- [ ] Managed databases (RDS, CosmosDB)
+- [ ] Container orchestration (ECS, AKS)
+- [ ] IAM, roles, and policies
+
+### 4.6 Agile, Estimation & Project Management
+- [ ] Scrum framework (sprints, ceremonies, roles)
+- [ ] Kanban and WIP limits
+- [ ] Story point estimation & planning poker
+- [ ] Breaking epics into stories and tasks
+- [ ] Sprint velocity and burndown charts
+- [ ] Stakeholder communication & managing expectations
+- [ ] Prioritization frameworks (MoSCoW, RICE)
+- [ ] Technical roadmap planning
+
+### 4.7 Case Studies - Expert
 - [ ] **Design Google Maps**
   - Focus: Graph algorithms, routing, tiles
   - Consider: Real-time traffic, ETA, offline maps

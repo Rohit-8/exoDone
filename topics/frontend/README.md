@@ -134,6 +134,22 @@
 - [ ] Debugging techniques
 - [ ] React DevTools mastery
 
+### 3.6 Browser Internals
+- [ ] Event loop (call stack, task queue, microtask queue)
+- [ ] Critical rendering path (DOM → CSSOM → Render Tree → Paint)
+- [ ] Reflow vs Repaint
+- [ ] requestAnimationFrame & requestIdleCallback
+- [ ] Memory leaks detection and prevention
+- [ ] Browser storage (localStorage, sessionStorage, IndexedDB)
+
+### 3.7 Web Platform APIs
+- [ ] Service Workers & PWA basics
+- [ ] Web Workers for heavy computation
+- [ ] Intersection Observer, Resize Observer
+- [ ] WebSockets & Server-Sent Events (client-side)
+- [ ] Notifications API & Push API
+- [ ] SEO fundamentals for SPAs (meta tags, pre-rendering)
+
 ---
 
 ## 🔴 Level 4: Expert (Lead Developer)
