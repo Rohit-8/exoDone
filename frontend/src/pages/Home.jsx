@@ -21,8 +21,8 @@ export default function Home() {
       icon: <BookOpen className="w-5 h-5" />,
       title: 'React & Frontend',
       description: 'Build modern UIs with React, hooks, state management, and advanced patterns',
-      iconBg: 'bg-violet-500/10',
-      iconColor: 'text-violet-400',
+      iconBg: 'bg-sky-500/10',
+      iconColor: 'text-sky-400',
     }
   ];
 

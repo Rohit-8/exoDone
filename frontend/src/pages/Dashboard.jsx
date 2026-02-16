@@ -49,8 +49,8 @@ export default function Dashboard() {
     },
     {
       icon: Clock,
-      iconColor: 'text-violet-400',
-      iconBg: 'bg-violet-500/10',
+      iconColor: 'text-sky-400',
+      iconBg: 'bg-sky-500/10',
       label: 'In Progress',
       value: overview?.recentActivity?.filter(a => a.status === 'in_progress').length || 0,
     },

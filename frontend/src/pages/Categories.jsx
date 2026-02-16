@@ -22,11 +22,11 @@ const categoryConfig = {
   },
   frontend: {
     icon: BookOpen,
-    iconBg: 'bg-violet-500/10',
-    iconColor: 'text-violet-400',
-    accentColor: 'text-violet-400',
-    hoverBorder: 'hover:border-violet-500/30',
-    barColor: 'bg-violet-500',
+    iconBg: 'bg-sky-500/10',
+    iconColor: 'text-sky-400',
+    accentColor: 'text-sky-400',
+    hoverBorder: 'hover:border-sky-500/30',
+    barColor: 'bg-sky-500',
   },
 };
 
