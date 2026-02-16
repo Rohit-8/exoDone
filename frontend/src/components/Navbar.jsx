@@ -44,7 +44,7 @@ export default function Navbar() {
             <div className="w-7 h-7 rounded-lg bg-accent-500 flex items-center justify-center">
               <BookOpen className="w-4 h-4 text-white" />
             </div>
-            <span>InterviewPrep</span>
+            <span>ExoDone</span>
           </Link>
 
           {/* Desktop Nav */}
