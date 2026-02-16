@@ -13,6 +13,7 @@ import Categories from './pages/Categories';
 import TopicView from './pages/TopicView';
 import LessonView from './pages/LessonView';
 import Progress from './pages/Progress';
+import AddTopic from './pages/AddTopic';
 
 function PrivateRoute({ children }) {
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
@@ -29,6 +30,7 @@ function App() {
         <Route path="categories" element={<Categories />} />
         <Route path="topic/:slug" element={<TopicView />} />
         <Route path="lesson/:slug" element={<LessonView />} />
+        <Route path="add-content" element={<AddTopic />} />
         
         <Route
           path="dashboard"

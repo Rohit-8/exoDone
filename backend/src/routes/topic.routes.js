@@ -4,6 +4,68 @@ import { optionalAuth } from '../middleware/auth.middleware.js';
 
 const router = express.Router();
 
+// Helper: generate slug from name
+function slugify(text) {
+  return text
+    .toString()
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, '-')
+    .replace(/[^\w-]+/g, '')
+    .replace(/--+/g, '-')
+    .replace(/^-+/, '')
+    .replace(/-+$/, '');
+}
+
+// Create a new topic (accessible to anyone — no auth required)
+router.post('/', async (req, res) => {
+  try {
+    const { category_id, name, description, difficulty_level, estimated_time } = req.body;
+
+    // Validation
+    if (!category_id || !name) {
+      return res.status(400).json({ error: 'category_id and name are required' });
+    }
+
+    const validDifficulties = ['beginner', 'intermediate', 'advanced', 'expert'];
+    if (difficulty_level && !validDifficulties.includes(difficulty_level)) {
+      return res.status(400).json({ error: `difficulty_level must be one of: ${validDifficulties.join(', ')}` });
+    }
+
+    // Check category exists
+    const categoryCheck = await query('SELECT id FROM categories WHERE id = $1', [category_id]);
+    if (categoryCheck.rows.length === 0) {
+      return res.status(404).json({ error: 'Category not found' });
+    }
+
+    // Generate slug and ensure uniqueness
+    let slug = slugify(name);
+    const slugCheck = await query('SELECT id FROM topics WHERE slug = $1', [slug]);
+    if (slugCheck.rows.length > 0) {
+      slug = `${slug}-${Date.now()}`;
+    }
+
+    // Get next order_index
+    const orderResult = await query(
+      'SELECT COALESCE(MAX(order_index), 0) + 1 as next_order FROM topics WHERE category_id = $1',
+      [category_id]
+    );
+    const orderIndex = orderResult.rows[0].next_order;
+
+    const result = await query(
+      `INSERT INTO topics (category_id, name, slug, description, difficulty_level, estimated_time, order_index)
+       VALUES ($1, $2, $3, $4, $5, $6, $7)
+       RETURNING *`,
+      [category_id, name.trim(), slug, description || null, difficulty_level || 'beginner', estimated_time || null, orderIndex]
+    );
+
+    res.status(201).json({ topic: result.rows[0], message: 'Topic created successfully' });
+  } catch (error) {
+    console.error('Create topic error:', error);
+    res.status(500).json({ error: 'Failed to create topic' });
+  }
+});
+
 // Get all topics
 router.get('/', optionalAuth, async (req, res) => {
   try {

@@ -48,12 +48,14 @@ export const categoryAPI = {
 export const topicAPI = {
   getAll: (params) => api.get('/topics', { params }),
   getBySlug: (slug) => api.get(`/topics/${slug}`),
+  create: (data) => api.post('/topics', data),
 };
 
 // Lessons API
 export const lessonAPI = {
   getBySlug: (slug) => api.get(`/lessons/${slug}`),
   search: (params) => api.get('/lessons/search', { params }),
+  create: (data) => api.post('/lessons', data),
 };
 
 // Progress API
