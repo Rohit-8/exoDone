@@ -54,88 +54,84 @@ export default function Register() {
     }
   };
 
-  return (
-    <div className="max-w-md mx-auto mt-16">
-      <div className="bg-slate-800 rounded-xl p-8 border border-slate-700">
-        <h1 className="text-3xl font-bold text-white mb-2 text-center">Create Account</h1>
-        <p className="text-gray-400 text-center mb-8">Start your learning journey today</p>
+  const inputClass = "w-full bg-surface-950 border border-surface-700/50 rounded-lg pl-10 pr-4 py-2.5 text-sm text-white placeholder:text-surface-600 focus:outline-none focus:border-accent-500/50 focus:ring-1 focus:ring-accent-500/20 transition-colors";
 
+  return (
+    <div className="max-w-sm mx-auto mt-16">
+      <div className="text-center mb-8">
+        <h1 className="text-2xl font-semibold text-white mb-1">Create Account</h1>
+        <p className="text-surface-400 text-sm">Start your learning journey today</p>
+      </div>
+
+      <div className="bg-surface-900 rounded-xl p-6 border border-surface-700/50">
         {error && (
-          <div className="bg-red-500/10 border border-red-500 rounded-lg p-4 mb-6 flex items-start space-x-3">
-            <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
-            <span className="text-red-500 text-sm">{error}</span>
+          <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-3 mb-5 flex items-start gap-2">
+            <AlertCircle className="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" />
+            <span className="text-red-400 text-sm">{error}</span>
           </div>
         )}
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">
-              Username
-            </label>
+            <label className="block text-sm font-medium text-surface-300 mb-1.5">Username</label>
             <div className="relative">
-              <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
+              <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-surface-500" />
               <input
                 type="text"
                 name="username"
                 value={formData.username}
                 onChange={handleChange}
                 required
-                className="w-full bg-slate-700 border border-slate-600 rounded-lg px-10 py-3 text-white focus:outline-none focus:border-blue-500"
-                placeholder="Enter username"
+                className={inputClass}
+                placeholder="Your username"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">
-              Email
-            </label>
+            <label className="block text-sm font-medium text-surface-300 mb-1.5">Email</label>
             <div className="relative">
-              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
+              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-surface-500" />
               <input
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full bg-slate-700 border border-slate-600 rounded-lg px-10 py-3 text-white focus:outline-none focus:border-blue-500"
-                placeholder="Enter email"
+                className={inputClass}
+                placeholder="you@example.com"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">
-              Password
-            </label>
+            <label className="block text-sm font-medium text-surface-300 mb-1.5">Password</label>
             <div className="relative">
-              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
+              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-surface-500" />
               <input
                 type="password"
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
                 required
-                className="w-full bg-slate-700 border border-slate-600 rounded-lg px-10 py-3 text-white focus:outline-none focus:border-blue-500"
-                placeholder="Enter password"
+                className={inputClass}
+                placeholder="At least 6 characters"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">
-              Confirm Password
-            </label>
+            <label className="block text-sm font-medium text-surface-300 mb-1.5">Confirm Password</label>
             <div className="relative">
-              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
+              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-surface-500" />
               <input
                 type="password"
                 name="confirmPassword"
                 value={formData.confirmPassword}
                 onChange={handleChange}
                 required
-                className="w-full bg-slate-700 border border-slate-600 rounded-lg px-10 py-3 text-white focus:outline-none focus:border-blue-500"
-                placeholder="Confirm password"
+                className={inputClass}
+                placeholder="Confirm your password"
               />
             </div>
           </div>
@@ -143,16 +139,16 @@ export default function Register() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition disabled:opacity-50"
+            className="w-full bg-accent-500 hover:bg-accent-600 text-white py-2.5 rounded-lg text-sm font-medium transition-colors disabled:opacity-50"
           >
-            {loading ? 'Creating Account...' : 'Sign Up'}
+            {loading ? 'Creating Account...' : 'Create Account'}
           </button>
         </form>
 
-        <p className="text-center text-gray-400 mt-6">
+        <p className="text-center text-surface-400 text-sm mt-5">
           Already have an account?{' '}
-          <Link to="/login" className="text-blue-500 hover:text-blue-400">
-            Login here
+          <Link to="/login" className="text-accent-400 hover:text-accent-300 font-medium">
+            Log in
           </Link>
         </p>
       </div>

@@ -2,15 +2,15 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { categoryAPI, topicAPI, lessonAPI } from '../services/api';
 import {
-  Plus, BookOpen, ArrowLeft, CheckCircle, AlertCircle,
-  Layers, FileText, Sparkles, X, ChevronDown
+  Plus, ArrowLeft, CheckCircle, AlertCircle,
+  Layers, FileText, X, ChevronDown
 } from 'lucide-react';
 
 const difficultyOptions = [
-  { value: 'beginner', label: 'Beginner', color: 'text-emerald-400 bg-emerald-500/15 border-emerald-500/30' },
-  { value: 'intermediate', label: 'Intermediate', color: 'text-amber-400 bg-amber-500/15 border-amber-500/30' },
-  { value: 'advanced', label: 'Advanced', color: 'text-orange-400 bg-orange-500/15 border-orange-500/30' },
-  { value: 'expert', label: 'Expert', color: 'text-red-400 bg-red-500/15 border-red-500/30' },
+  { value: 'beginner', label: 'Beginner', color: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20' },
+  { value: 'intermediate', label: 'Intermediate', color: 'text-amber-400 bg-amber-500/10 border-amber-500/20' },
+  { value: 'advanced', label: 'Advanced', color: 'text-orange-400 bg-orange-500/10 border-orange-500/20' },
+  { value: 'expert', label: 'Expert', color: 'text-red-400 bg-red-500/10 border-red-500/20' },
 ];
 
 export default function AddTopic() {
@@ -163,49 +163,46 @@ export default function AddTopic() {
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-[60vh]">
-        <div className="relative">
-          <div className="w-16 h-16 border-4 border-cyan-500/20 rounded-full" />
-          <div className="w-16 h-16 border-4 border-transparent border-t-cyan-500 rounded-full animate-spin absolute inset-0" />
-        </div>
+        <div className="spinner" />
       </div>
     );
   }
 
+  const inputClass = 'w-full bg-surface-900 border border-surface-700/50 rounded-lg px-3.5 py-2.5 text-white text-sm placeholder:text-surface-600 focus:outline-none focus:border-accent-500/50 focus:ring-1 focus:ring-accent-500/20 transition-colors';
+  const selectClass = inputClass + ' appearance-none cursor-pointer';
+  const labelClass = 'block text-sm font-medium text-surface-300 mb-1.5';
+
   return (
-    <div className="max-w-3xl mx-auto">
+    <div className="max-w-2xl mx-auto animate-fade-in">
       {/* Header */}
-      <div className="mb-8">
+      <div className="mb-6">
         <button
           onClick={() => navigate(-1)}
-          className="inline-flex items-center gap-1.5 text-sm text-cyan-400 hover:text-cyan-300 mb-4 transition-colors group"
+          className="inline-flex items-center gap-1 text-xs text-accent-400 hover:text-accent-300 mb-3 transition-colors"
         >
-          <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
+          <ArrowLeft className="w-3.5 h-3.5" />
           Go Back
         </button>
 
-        <div className="flex items-center gap-3 mb-2">
-          <div className="w-12 h-12 rounded-2xl bg-cyan-500/15 flex items-center justify-center">
-            <Plus className="w-6 h-6 text-cyan-400" />
+        <div className="flex items-center gap-3">
+          <div className="w-9 h-9 rounded-lg bg-accent-500/10 flex items-center justify-center">
+            <Plus className="w-4.5 h-4.5 text-accent-400" />
           </div>
           <div>
-            <h1 className="text-2xl lg:text-3xl font-bold text-white tracking-tight">
-              Add New Content
-            </h1>
-            <p className="text-slate-400 text-sm mt-0.5">
-              Contribute a new topic or lesson to the platform
-            </p>
+            <h1 className="text-xl font-semibold text-white">Add New Content</h1>
+            <p className="text-surface-400 text-xs mt-0.5">Contribute a new topic or lesson</p>
           </div>
         </div>
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-2 mb-8">
+      <div className="flex gap-2 mb-6">
         <button
           onClick={() => { setActiveTab('topic'); setError(null); setSuccess(null); }}
-          className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
+          className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
             activeTab === 'topic'
-              ? 'bg-cyan-500/15 text-cyan-400 border border-cyan-500/30 shadow-lg shadow-cyan-500/5'
-              : 'bg-slate-800/40 text-slate-400 border border-slate-700/40 hover:border-slate-600/60 hover:text-slate-300'
+              ? 'bg-accent-500/10 text-accent-400 border border-accent-500/20'
+              : 'bg-surface-900 text-surface-400 border border-surface-700/50 hover:text-surface-200'
           }`}
         >
           <Layers className="w-4 h-4" />
@@ -213,10 +210,10 @@ export default function AddTopic() {
         </button>
         <button
           onClick={() => { setActiveTab('lesson'); setError(null); setSuccess(null); }}
-          className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
+          className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
             activeTab === 'lesson'
-              ? 'bg-cyan-500/15 text-cyan-400 border border-cyan-500/30 shadow-lg shadow-cyan-500/5'
-              : 'bg-slate-800/40 text-slate-400 border border-slate-700/40 hover:border-slate-600/60 hover:text-slate-300'
+              ? 'bg-accent-500/10 text-accent-400 border border-accent-500/20'
+              : 'bg-surface-900 text-surface-400 border border-surface-700/50 hover:text-surface-200'
           }`}
         >
           <FileText className="w-4 h-4" />
@@ -226,100 +223,85 @@ export default function AddTopic() {
 
       {/* Notifications */}
       {success && (
-        <div className="mb-6 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-start gap-3 animate-fade-in-up">
-          <CheckCircle className="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5" />
-          <div className="flex-1">
-            <p className="text-emerald-300 text-sm font-medium">{success}</p>
-          </div>
-          <button onClick={() => setSuccess(null)} className="text-emerald-400/60 hover:text-emerald-400">
-            <X className="w-4 h-4" />
+        <div className="mb-5 p-3.5 rounded-lg bg-emerald-500/8 border border-emerald-500/20 flex items-start gap-2.5 animate-fade-in">
+          <CheckCircle className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
+          <p className="text-emerald-300 text-sm flex-1">{success}</p>
+          <button onClick={() => setSuccess(null)} className="text-emerald-400/50 hover:text-emerald-400">
+            <X className="w-3.5 h-3.5" />
           </button>
         </div>
       )}
 
       {error && (
-        <div className="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/30 flex items-start gap-3 animate-fade-in-up">
-          <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
-          <div className="flex-1">
-            <p className="text-red-300 text-sm font-medium">{error}</p>
-          </div>
-          <button onClick={() => setError(null)} className="text-red-400/60 hover:text-red-400">
-            <X className="w-4 h-4" />
+        <div className="mb-5 p-3.5 rounded-lg bg-red-500/8 border border-red-500/20 flex items-start gap-2.5 animate-fade-in">
+          <AlertCircle className="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" />
+          <p className="text-red-300 text-sm flex-1">{error}</p>
+          <button onClick={() => setError(null)} className="text-red-400/50 hover:text-red-400">
+            <X className="w-3.5 h-3.5" />
           </button>
         </div>
       )}
 
       {/* Topic Form */}
       {activeTab === 'topic' && (
-        <form onSubmit={handleTopicSubmit} className="space-y-6 animate-fade-in">
-          <div className="bg-slate-800/40 rounded-2xl border border-slate-700/40 p-6 lg:p-8 space-y-6">
-            <div className="flex items-center gap-2 mb-2">
-              <Sparkles className="w-4 h-4 text-cyan-500/60" />
-              <h2 className="text-lg font-semibold text-white">Topic Details</h2>
-            </div>
+        <form onSubmit={handleTopicSubmit} className="space-y-5 animate-fade-in">
+          <div className="bg-surface-900 rounded-xl border border-surface-700/50 p-5 lg:p-6 space-y-4">
+            <h2 className="text-sm font-semibold text-white mb-1">Topic Details</h2>
 
-            {/* Category */}
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">
-                Category <span className="text-red-400">*</span>
-              </label>
+              <label className={labelClass}>Category <span className="text-red-400">*</span></label>
               <div className="relative">
                 <select
                   value={topicForm.category_id}
                   onChange={(e) => setTopicForm(prev => ({ ...prev, category_id: e.target.value }))}
                   required
-                  className="w-full bg-slate-900/60 border border-slate-700/50 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/20 appearance-none cursor-pointer transition-colors"
+                  className={selectClass}
                 >
                   <option value="">Select a category...</option>
                   {categories.map(cat => (
                     <option key={cat.id} value={cat.id}>{cat.name}</option>
                   ))}
                 </select>
-                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 pointer-events-none" />
+                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-surface-500 pointer-events-none" />
               </div>
             </div>
 
-            {/* Name */}
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">
-                Topic Name <span className="text-red-400">*</span>
-              </label>
+              <label className={labelClass}>Topic Name <span className="text-red-400">*</span></label>
               <input
                 type="text"
                 value={topicForm.name}
                 onChange={(e) => setTopicForm(prev => ({ ...prev, name: e.target.value }))}
                 required
                 placeholder="e.g., React Performance Optimization"
-                className="w-full bg-slate-900/60 border border-slate-700/50 rounded-xl px-4 py-3 text-white text-sm placeholder:text-slate-600 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/20 transition-colors"
+                className={inputClass}
               />
             </div>
 
-            {/* Description */}
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">Description</label>
+              <label className={labelClass}>Description</label>
               <textarea
                 value={topicForm.description}
                 onChange={(e) => setTopicForm(prev => ({ ...prev, description: e.target.value }))}
                 rows={3}
                 placeholder="Brief description of what this topic covers..."
-                className="w-full bg-slate-900/60 border border-slate-700/50 rounded-xl px-4 py-3 text-white text-sm placeholder:text-slate-600 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/20 transition-colors resize-none"
+                className={inputClass + ' resize-none'}
               />
             </div>
 
-            {/* Difficulty & Time */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">Difficulty Level</label>
-                <div className="flex flex-wrap gap-2">
+                <label className={labelClass}>Difficulty Level</label>
+                <div className="flex flex-wrap gap-1.5">
                   {difficultyOptions.map(opt => (
                     <button
                       key={opt.value}
                       type="button"
                       onClick={() => setTopicForm(prev => ({ ...prev, difficulty_level: opt.value }))}
-                      className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all ${
+                      className={`px-2.5 py-1 rounded text-[11px] font-medium border transition-colors ${
                         topicForm.difficulty_level === opt.value
-                          ? opt.color + ' ring-1 ring-current/30'
-                          : 'bg-slate-800/60 text-slate-500 border-slate-700/50 hover:text-slate-300'
+                          ? opt.color
+                          : 'bg-surface-800 text-surface-500 border-surface-700/50 hover:text-surface-300'
                       }`}
                     >
                       {opt.label}
@@ -329,30 +311,27 @@ export default function AddTopic() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">
-                  Estimated Time (minutes)
-                </label>
+                <label className={labelClass}>Estimated Time (min)</label>
                 <input
                   type="number"
                   value={topicForm.estimated_time}
                   onChange={(e) => setTopicForm(prev => ({ ...prev, estimated_time: e.target.value }))}
                   placeholder="e.g., 60"
                   min="1"
-                  className="w-full bg-slate-900/60 border border-slate-700/50 rounded-xl px-4 py-3 text-white text-sm placeholder:text-slate-600 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/20 transition-colors"
+                  className={inputClass}
                 />
               </div>
             </div>
           </div>
 
-          {/* Submit */}
           <button
             type="submit"
             disabled={submitting}
-            className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-cyan-500 hover:bg-cyan-400 disabled:bg-cyan-500/50 text-white font-semibold rounded-xl transition-all duration-200 shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/30 disabled:shadow-none"
+            className="w-full flex items-center justify-center gap-2 px-5 py-2.5 bg-accent-500 hover:bg-accent-600 disabled:opacity-50 text-white text-sm font-medium rounded-lg transition-colors"
           >
             {submitting ? (
               <>
-                <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                <div className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                 Creating...
               </>
             ) : (
@@ -367,45 +346,36 @@ export default function AddTopic() {
 
       {/* Lesson Form */}
       {activeTab === 'lesson' && (
-        <form onSubmit={handleLessonSubmit} className="space-y-6 animate-fade-in">
-          <div className="bg-slate-800/40 rounded-2xl border border-slate-700/40 p-6 lg:p-8 space-y-6">
-            <div className="flex items-center gap-2 mb-2">
-              <Sparkles className="w-4 h-4 text-cyan-500/60" />
-              <h2 className="text-lg font-semibold text-white">Lesson Details</h2>
-            </div>
+        <form onSubmit={handleLessonSubmit} className="space-y-5 animate-fade-in">
+          <div className="bg-surface-900 rounded-xl border border-surface-700/50 p-5 lg:p-6 space-y-4">
+            <h2 className="text-sm font-semibold text-white mb-1">Lesson Details</h2>
 
-            {/* Category (for filtering topics) */}
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">
-                Category <span className="text-red-400">*</span>
-              </label>
+              <label className={labelClass}>Category <span className="text-red-400">*</span></label>
               <div className="relative">
                 <select
                   onChange={(e) => handleLessonCategoryChange(e.target.value)}
                   required
-                  className="w-full bg-slate-900/60 border border-slate-700/50 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/20 appearance-none cursor-pointer transition-colors"
+                  className={selectClass}
                 >
                   <option value="">Select a category first...</option>
                   {categories.map(cat => (
                     <option key={cat.id} value={cat.id}>{cat.name}</option>
                   ))}
                 </select>
-                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 pointer-events-none" />
+                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-surface-500 pointer-events-none" />
               </div>
             </div>
 
-            {/* Topic */}
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">
-                Topic <span className="text-red-400">*</span>
-              </label>
+              <label className={labelClass}>Topic <span className="text-red-400">*</span></label>
               <div className="relative">
                 <select
                   value={lessonForm.topic_id}
                   onChange={(e) => setLessonForm(prev => ({ ...prev, topic_id: e.target.value }))}
                   required
                   disabled={topicsLoading || topics.length === 0}
-                  className="w-full bg-slate-900/60 border border-slate-700/50 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/20 appearance-none cursor-pointer transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className={selectClass + ' disabled:opacity-50 disabled:cursor-not-allowed'}
                 >
                   <option value="">
                     {topicsLoading ? 'Loading topics...' : topics.length === 0 ? 'Select a category first' : 'Select a topic...'}
@@ -414,42 +384,37 @@ export default function AddTopic() {
                     <option key={topic.id} value={topic.id}>{topic.name}</option>
                   ))}
                 </select>
-                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 pointer-events-none" />
+                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-surface-500 pointer-events-none" />
               </div>
             </div>
 
-            {/* Title */}
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">
-                Lesson Title <span className="text-red-400">*</span>
-              </label>
+              <label className={labelClass}>Lesson Title <span className="text-red-400">*</span></label>
               <input
                 type="text"
                 value={lessonForm.title}
                 onChange={(e) => setLessonForm(prev => ({ ...prev, title: e.target.value }))}
                 required
                 placeholder="e.g., Understanding React.memo and useMemo"
-                className="w-full bg-slate-900/60 border border-slate-700/50 rounded-xl px-4 py-3 text-white text-sm placeholder:text-slate-600 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/20 transition-colors"
+                className={inputClass}
               />
             </div>
 
-            {/* Summary */}
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">Summary</label>
+              <label className={labelClass}>Summary</label>
               <input
                 type="text"
                 value={lessonForm.summary}
                 onChange={(e) => setLessonForm(prev => ({ ...prev, summary: e.target.value }))}
                 placeholder="One-line summary of this lesson"
-                className="w-full bg-slate-900/60 border border-slate-700/50 rounded-xl px-4 py-3 text-white text-sm placeholder:text-slate-600 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/20 transition-colors"
+                className={inputClass}
               />
             </div>
 
-            {/* Content */}
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">
+              <label className={labelClass}>
                 Content <span className="text-red-400">*</span>
-                <span className="text-slate-500 font-normal ml-2">(Markdown supported)</span>
+                <span className="text-surface-500 font-normal ml-1.5">(Markdown supported)</span>
               </label>
               <textarea
                 value={lessonForm.content}
@@ -457,39 +422,37 @@ export default function AddTopic() {
                 required
                 rows={10}
                 placeholder="Write the lesson content here. Markdown is supported..."
-                className="w-full bg-slate-900/60 border border-slate-700/50 rounded-xl px-4 py-3 text-white text-sm placeholder:text-slate-600 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/20 transition-colors resize-y font-mono"
+                className={inputClass + ' resize-y font-mono'}
               />
             </div>
 
-            {/* Key Points */}
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">
+              <label className={labelClass}>
                 Key Points
-                <span className="text-slate-500 font-normal ml-2">(one per line)</span>
+                <span className="text-surface-500 font-normal ml-1.5">(one per line)</span>
               </label>
               <textarea
                 value={lessonForm.key_points}
                 onChange={(e) => setLessonForm(prev => ({ ...prev, key_points: e.target.value }))}
                 rows={4}
                 placeholder={"Key takeaway point 1\nKey takeaway point 2\nKey takeaway point 3"}
-                className="w-full bg-slate-900/60 border border-slate-700/50 rounded-xl px-4 py-3 text-white text-sm placeholder:text-slate-600 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/20 transition-colors resize-none"
+                className={inputClass + ' resize-none'}
               />
             </div>
 
-            {/* Difficulty & Time */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">Difficulty Level</label>
-                <div className="flex flex-wrap gap-2">
+                <label className={labelClass}>Difficulty Level</label>
+                <div className="flex flex-wrap gap-1.5">
                   {difficultyOptions.map(opt => (
                     <button
                       key={opt.value}
                       type="button"
                       onClick={() => setLessonForm(prev => ({ ...prev, difficulty_level: opt.value }))}
-                      className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all ${
+                      className={`px-2.5 py-1 rounded text-[11px] font-medium border transition-colors ${
                         lessonForm.difficulty_level === opt.value
-                          ? opt.color + ' ring-1 ring-current/30'
-                          : 'bg-slate-800/60 text-slate-500 border-slate-700/50 hover:text-slate-300'
+                          ? opt.color
+                          : 'bg-surface-800 text-surface-500 border-surface-700/50 hover:text-surface-300'
                       }`}
                     >
                       {opt.label}
@@ -499,30 +462,27 @@ export default function AddTopic() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">
-                  Estimated Time (minutes)
-                </label>
+                <label className={labelClass}>Estimated Time (min)</label>
                 <input
                   type="number"
                   value={lessonForm.estimated_time}
                   onChange={(e) => setLessonForm(prev => ({ ...prev, estimated_time: e.target.value }))}
                   placeholder="e.g., 15"
                   min="1"
-                  className="w-full bg-slate-900/60 border border-slate-700/50 rounded-xl px-4 py-3 text-white text-sm placeholder:text-slate-600 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/20 transition-colors"
+                  className={inputClass}
                 />
               </div>
             </div>
           </div>
 
-          {/* Submit */}
           <button
             type="submit"
             disabled={submitting}
-            className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-cyan-500 hover:bg-cyan-400 disabled:bg-cyan-500/50 text-white font-semibold rounded-xl transition-all duration-200 shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/30 disabled:shadow-none"
+            className="w-full flex items-center justify-center gap-2 px-5 py-2.5 bg-accent-500 hover:bg-accent-600 disabled:opacity-50 text-white text-sm font-medium rounded-lg transition-colors"
           >
             {submitting ? (
               <>
-                <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                <div className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                 Creating...
               </>
             ) : (

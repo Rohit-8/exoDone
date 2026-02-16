@@ -3,14 +3,12 @@
 @tailwind utilities;
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Inter, system-ui, -apple-system, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #0f172a;
-
+  color-scheme: dark;
+  color: #e4e4e9;
+  background-color: #0c0c12;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -25,25 +23,27 @@
 
 body {
   min-height: 100vh;
+  background-color: #0c0c12;
 }
 
-/* Code block styling */
+/* ─── Code Block ─── */
 pre {
-  background-color: #1e293b;
+  background-color: #111119;
   padding: 1rem;
   border-radius: 0.5rem;
   overflow-x: auto;
   margin: 1rem 0;
+  border: 1px solid #1f1f2e;
 }
 
 code {
-  font-family: 'Courier New', monospace;
-  font-size: 0.9em;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.875em;
 }
 
-/* Markdown content styling */
+/* ─── Markdown Content ─── */
 .markdown-content {
-  @apply text-gray-200 leading-relaxed;
+  @apply text-surface-200 leading-relaxed;
 }
 
 .markdown-content h1 {
@@ -51,7 +51,7 @@ code {
 }
 
 .markdown-content h2 {
-  @apply text-2xl font-bold mt-6 mb-3 text-white;
+  @apply text-2xl font-semibold mt-6 mb-3 text-white;
 }
 
 .markdown-content h3 {
@@ -59,7 +59,7 @@ code {
 }
 
 .markdown-content p {
-  @apply mb-4;
+  @apply mb-4 text-surface-200;
 }
 
 .markdown-content ul, .markdown-content ol {
@@ -67,15 +67,15 @@ code {
 }
 
 .markdown-content li {
-  @apply mb-2;
+  @apply mb-2 text-surface-300;
 }
 
 .markdown-content a {
-  @apply text-blue-400 hover:text-blue-300 underline;
+  @apply text-accent-400 hover:text-accent-300 underline underline-offset-2;
 }
 
 .markdown-content blockquote {
-  @apply border-l-4 border-blue-500 pl-4 italic my-4 text-gray-300;
+  @apply border-l-2 border-accent-500/40 pl-4 italic my-4 text-surface-300;
 }
 
 .markdown-content table {
@@ -83,44 +83,44 @@ code {
 }
 
 .markdown-content th {
-  @apply bg-slate-700 p-2 text-left font-semibold;
+  @apply bg-surface-800 p-3 text-left font-semibold text-surface-200 border-b border-surface-700;
 }
 
 .markdown-content td {
-  @apply border border-slate-600 p-2;
+  @apply border-b border-surface-700/50 p-3 text-surface-300;
 }
 
-/* Loading spinner */
+/* ─── Spinner ─── */
 .spinner {
-  border: 3px solid rgba(255, 255, 255, 0.1);
-  border-top-color: #06b6d4;
+  border: 2px solid rgba(255, 255, 255, 0.06);
+  border-top-color: #7c5cfc;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  animation: spin 0.8s linear infinite;
+  width: 36px;
+  height: 36px;
+  animation: spin 0.7s linear infinite;
 }
 
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
 
-/* Scrollbar styling */
+/* ─── Scrollbar ─── */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0f172a;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #334155;
-  border-radius: 4px;
+  background: #2a2a3d;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+  background: #3d3d57;
 }
 
 /* ─── Sidebar Scrollbar ─── */
@@ -133,20 +133,12 @@ code {
 }
 
 .sidebar-scroll::-webkit-scrollbar-thumb {
-  background: rgba(100, 116, 139, 0.15);
+  background: rgba(100, 100, 130, 0.12);
   border-radius: 2px;
 }
 
 .sidebar-scroll::-webkit-scrollbar-thumb:hover {
-  background: rgba(100, 116, 139, 0.35);
-}
-
-/* ─── Gradient Text ─── */
-.gradient-text {
-  background: linear-gradient(135deg, #06b6d4, #3b82f6, #8b5cf6);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  background: rgba(100, 100, 130, 0.3);
 }
 
 /* ─── Animations ─── */
@@ -158,7 +150,7 @@ code {
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
@@ -169,7 +161,7 @@ code {
 @keyframes slideInLeft {
   from {
     opacity: 0;
-    transform: translateX(-16px);
+    transform: translateX(-12px);
   }
   to {
     opacity: 1;
@@ -177,53 +169,26 @@ code {
   }
 }
 
-@keyframes pulse-glow {
-  0%, 100% {
-    box-shadow: 0 0 8px rgba(6, 182, 212, 0.2);
-  }
-  50% {
-    box-shadow: 0 0 20px rgba(6, 182, 212, 0.4);
-  }
-}
-
 .animate-fade-in {
-  animation: fadeIn 0.3s ease-out both;
+  animation: fadeIn 0.25s ease-out both;
 }
 
 .animate-fade-in-up {
-  animation: fadeInUp 0.4s ease-out both;
+  animation: fadeInUp 0.35s ease-out both;
 }
 
 .animate-slide-in-left {
-  animation: slideInLeft 0.3s ease-out both;
-}
-
-/* ─── Glow Effects ─── */
-.glow-cyan {
-  box-shadow: 0 0 20px rgba(6, 182, 212, 0.15), 0 0 60px rgba(6, 182, 212, 0.05);
-}
-
-.glow-cyan-sm {
-  box-shadow: 0 0 8px rgba(6, 182, 212, 0.3);
-}
-
-/* ─── Glass Effect ─── */
-.glass {
-  background: rgba(15, 23, 42, 0.75);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-}
-
-/* ─── Grid Background ─── */
-.grid-bg {
-  background-image:
-    linear-gradient(rgba(6, 182, 212, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(6, 182, 212, 0.025) 1px, transparent 1px);
-  background-size: 48px 48px;
+  animation: slideInLeft 0.25s ease-out both;
 }
 
 /* ─── Selection ─── */
 ::selection {
-  background: rgba(6, 182, 212, 0.3);
+  background: rgba(124, 92, 252, 0.3);
   color: white;
+}
+
+/* ─── Focus ring ─── */
+*:focus-visible {
+  outline: 2px solid rgba(124, 92, 252, 0.5);
+  outline-offset: 2px;
 }
