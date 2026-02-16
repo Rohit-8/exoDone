@@ -185,7 +185,7 @@ async function seed() {
           await client.query(
             `INSERT INTO quiz_questions (lesson_id, question_text, question_type, options, correct_answer, explanation, difficulty, points, order_index)
              VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)`,
-            [lessonId, q.question_text, q.question_type, JSON.stringify(q.options), q.correct_answer, q.explanation, q.difficulty, q.points || 10, q.order_index]
+            [lessonId, q.question_text, q.question_type, typeof q.options === 'string' ? q.options : JSON.stringify(q.options), q.correct_answer, q.explanation, q.difficulty, q.points || 10, q.order_index]
           );
           quizCount++;
         }
